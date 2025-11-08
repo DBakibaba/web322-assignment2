@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= project.title %> - Climate Solutions</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <div class="container mx-auto text-center my-10">
+    <div class="hero bg-base-200 p-10 rounded-lg shadow-xl">
+      <div class="hero-content flex-col">
+        <h1 class="text-5xl font-bold mb-4"><%= project.title %></h1>
+        <p class="mb-4">Below, you will find detailed information about this project.</p>
+        <img src="<%= project.feature_img_url %>" alt="<%= project.title %>" class="rounded-lg shadow-2xl mx-auto mb-6 w-2/3">
+        <p class="mb-4"><strong>Intro:</strong> <%= project.intro_short %></p>
+        <p class="mb-4"><strong>Impact:</strong> <%= project.impact %></p>
+        <a href="<%= project.original_source_url %>" class="btn btn-primary mb-4" target="_blank">More Info</a>
+        
+     
+        <div class="my-6 p-4 bg-base-300 rounded-lg">
+          <h3 class="text-2xl font-bold mb-2">Quote of the Day</h3>
+          <p id="quote-text" class="text-lg italic">"Loading quote..."</p>
+          <p id="quote-author" class="text-sm text-right mt-2">- Author</p>
+        </div>
+        
+        <a href="#" onclick="history.back(); return false;" class="btn">Go Back</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      fetch('https://dummyjson.com/quotes/random')
+        .then(response => response.json())
+        .then(data => {
+          
+          document.getElementById('quote-text').textContent = `"${data.quote}"`;
+          document.getElementById('quote-author').textContent = `- ${data.author}`;
+        })
+        .catch(error => {
+          console.error('Error fetching quote:', error);
+          document.getElementById('quote-text').textContent = '"An error occurred while loading the quote."';
+          document.getElementById('quote-author').textContent = '';
+        });
+    });
+  </script>
+
+</body>
+</html>
