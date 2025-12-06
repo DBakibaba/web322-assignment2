@@ -20,6 +20,9 @@
         <a href="/solutions/projects?sector=Land Sinks" class="btn btn-outline">Land Sinks</a>
     </div>
 </div>
+<% if (session.user) { %>
+  <a href="/solutions/addProject" class="btn btn-success mt-4">Add New Project</a>
+<% } %>
     <div class="overflow-x-auto">
   <table class="table table-zebra w-full">
      
@@ -37,8 +40,8 @@
         <tr>
           <td><%= project.title %></td>
           <td>
-            <a href="/solutions/projects?sector=<%= project.sector %>" class="btn btn-sm btn-outline">
-              <%= project.sector %>
+            <a href="/solutions/projects?sector=<%= project.Sector.sector_name %>" class="btn btn-sm btn-outline">
+              <%= project.Sector.sector_name %>
             </a>
           </td>
           <td><%= project.summary_short %></td>

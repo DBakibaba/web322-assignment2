@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Project - Climate Solutions</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <div class="container mx-auto my-10">
+    <div class="hero bg-base-200 p-8 rounded-lg shadow-lg">
+      <div class="hero-content flex-col w-full">
+        <h1 class="text-4xl font-bold mb-4">Add Project</h1>
+        
+        <form method="POST" action="/solutions/addProject" class="w-full max-w-2xl">
+          
+          <div class="form-control mb-4">
+            <label class="label"><span class="label-text">Title</span></label>
+            <input type="text" name="title" required class="input input-bordered w-full">
+          </div>
+
+          <div class="form-control mb-4">
+            <label class="label"><span class="label-text">Feature Image URL</span></label>
+            <input type="url" name="feature_img_url" required class="input input-bordered w-full">
+          </div>
+
+          <div class="form-control mb-4">
+            <label class="label"><span class="label-text">Sector</span></label>
+            <select name="sector_id" required class="select select-bordered w-full">
+              <% sectors.forEach(sec => { %>
+                <option value="<%= sec.id %>"><%= sec.sector_name %></option>
+              <% }) %>
+            </select>
+          </div>
+
+          <div class="form-control mb-4">
+            <label class="label"><span class="label-text">Intro Short</span></label>
+            <textarea name="intro_short" required class="textarea textarea-bordered w-full"></textarea>
+          </div>
+
+          <div class="form-control mb-4">
+            <label class="label"><span class="label-text">Summary Short</span></label>
+            <textarea name="summary_short" required class="textarea textarea-bordered w-full"></textarea>
+          </div>
+
+          <div class="form-control mb-4">
+            <label class="label"><span class="label-text">Impact</span></label>
+            <textarea name="impact" required class="textarea textarea-bordered w-full"></textarea>
+          </div>
+
+          <div class="form-control mb-4">
+            <label class="label"><span class="label-text">Original Source URL</span></label>
+            <input type="url" name="original_source_url" required class="input input-bordered w-full">
+          </div>
+
+          <button type="submit" class="btn btn-success w-full">Add Project</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
